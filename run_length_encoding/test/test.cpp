@@ -1,10 +1,10 @@
 #include <iostream>
-#include "../src/run_length_encoding.h"
 #include <string>
 #include <gtest/gtest.h>
+#include "../src/run_length_encoding.h"
 
 
-TEST(algo, works)
+TEST(run_length_encoding, works)
 {
     using namespace algorithm::run_length_encoding;
     std::string test_string {"WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWBWWWWWWWWWWWWWW"};

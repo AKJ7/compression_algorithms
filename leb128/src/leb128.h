@@ -20,10 +20,9 @@ namespace algorithm
     namespace leb128
     {
         template <typename T, typename OutputIterator, class = typename std::enable_if<std::is_integral<T>::value>::type>
-        auto encode_unsigned(T value, OutputIterator out) -> uint8_t
+        auto encode_unsigned(T value, OutputIterator out) -> void
         {
             uint8_t byte;
-            uint8_t counter = 0;
             do {
                 byte = value;
                 value >>= 7;
@@ -32,14 +31,12 @@ namespace algorithm
                     byte |= 0x80u;
                 *out++ = byte;
             } while (value != 0);
-            return counter;
         }
 
         template <typename T, typename InputIterator, class = typename std::enable_if<std::is_integral<T>::value>::type>
-        auto decode_unsigned(T& value, InputIterator in) -> uint8_t
+        auto decode_unsigned(T& value, InputIterator in) -> void
         {
             uint8_t shift = 0;
-            uint8_t counter = 0;
             uint8_t byte;
             value = 0;
             while (true)
@@ -50,7 +47,6 @@ namespace algorithm
                     break;
                 shift += 7;
             }
-            return counter;
         }
 
         template <typename T, typename OutputIterator, class = typename std::enable_if<std::is_integral<T>::value>::type>
